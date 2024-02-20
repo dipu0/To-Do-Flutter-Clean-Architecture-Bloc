@@ -1,5 +1,5 @@
 part of 'api_urls.dart';
 
-abstract class TradeApiUrls {
-  String get getAllTrade;
+abstract class ToDoApiUrls {
+  String get getAllToDo;
 }
