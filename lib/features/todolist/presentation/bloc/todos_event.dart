@@ -39,3 +39,13 @@ class DeleteToDoItem extends ToDosEvent {
   @override
   List<Object> get props => [id];
 }
+
+
+class AddToDoItem extends ToDosEvent {
+  final ToDoItem item;
+
+  const AddToDoItem(this.item);
+
+  @override
+  List<Object> get props => [item];
+}

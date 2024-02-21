@@ -15,6 +15,7 @@ class ToDosBloc extends Bloc<ToDosEvent, ToDosState> {
     on<FetchToDoItem>(_fetchToDoItem);
     on<UpdateToDoItem>(_updateToDoItem);
     on<DeleteToDoItem>(_deleteToDoItem);
+    on<AddToDoItem>(_addToDoItem);
   }
 
   _fetchToDos(ToDosEvent event, Emitter<ToDosState> emit,) async {
@@ -70,4 +71,13 @@ class ToDosBloc extends Bloc<ToDosEvent, ToDosState> {
           (_) => add(FetchToDos()),
     );
   }
+
+Future<void> _addToDoItem(AddToDoItem event, Emitter<ToDosState> emit) async {
+  emit(ToDosLoading());
+  final result = await _todosUseCase.addToDoItem(event.item);
+  result.fold(
+        (failure) => emit(ToDosError(failure.message)),
+        (_) => add(FetchToDos()),
+  );
+}
 }

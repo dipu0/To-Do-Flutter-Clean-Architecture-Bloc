@@ -9,5 +9,6 @@ abstract class ToDoRepository {
   Future<Either<Failure, ToDoItem>> getToDoItem(String id);
   Future<Either<Failure, ToDoItem>> updateToDoItem(String id, ToDoItem updatedItem);
   Future<Either<Failure, bool>> deleteToDoItem(String id);
+  Future<Either<Failure, ToDoItem>> completeToDoItem(String id, ToDoItem updatedItem);
 
 }

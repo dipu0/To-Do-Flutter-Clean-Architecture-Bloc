@@ -31,3 +31,18 @@ class ToDosError extends ToDosState {
   @override
   List<Object> get props => [message];
 }
+
+class ToDoItemAdded extends ToDosState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ToDoItemUpdated extends ToDosState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ToDoItemDeleted extends ToDosState {
+  @override
+  List<Object?> get props => [];
+}
