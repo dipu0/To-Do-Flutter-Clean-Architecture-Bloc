@@ -74,7 +74,7 @@ class ReadItemScreen extends StatelessWidget {
     // Dispatch update event to Bloc
     context.read<ToDosBloc>().add(UpdateToDoItem(item.id.toString(), updatedItem));
 
-    Navigator.of(context).pop(); // Optionally close the details screen after updating
+    Navigator.of(context).pop();
   }
 
   void _confirmDelete(BuildContext context, ToDoItem item) {

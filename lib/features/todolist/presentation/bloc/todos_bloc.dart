@@ -46,9 +46,7 @@ class ToDosBloc extends Bloc<ToDosEvent, ToDosState> {
     final result = await _todosUseCase.getToDoItem(event.id);
     result.fold(
           (failure) => emit(ToDosError(failure.message)),
-          (item) =>
-          emit(ToDosLoaded(
-              [item])), // Assuming ToDosLoaded can accept a single item list
+          (item) => emit(ToDosLoaded([item])),
     );
   }
 

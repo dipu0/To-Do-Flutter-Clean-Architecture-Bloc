@@ -103,20 +103,4 @@ class ToDoHttpImp extends BaseHttpRepository implements ToDoRepository {
     }
   }
 
-  Future<Either<Failure, ToDoItem>> completeToDoItem(String id, ToDoItem updatedItem) async {
-    try {
-      final response = await _client.authorizedPut(_urls.getAllToDo + '$id/', updatedItem.toJson() );
-      if (response.messageCode == 200) {
-        final item = ToDoItem.fromJson(response.response);
-        Logger().i("Updated: ${item.title}");
-        return Right(item);
-      } else {
-        return const Left(ConnectionFailure("Failed to update the item"));
-      }
-    } catch (e) {
-      Logger().e("Error updating ToDo item: $e");
-      throw Future.error(e);
-    }
-  }
-
 }

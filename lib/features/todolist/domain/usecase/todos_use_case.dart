@@ -26,7 +26,4 @@ class ToDosUseCase {
   Future<Either<Failure, bool>> deleteToDoItem(String id) async {
     return await _todoRepository.deleteToDoItem(id);
   }
-  Future<Either<Failure, ToDoItem>> completeToDoItem(String id, ToDoItem updatedItem) async{
-    return await _todoRepository.completeToDoItem(id, updatedItem);
-  }
 }
