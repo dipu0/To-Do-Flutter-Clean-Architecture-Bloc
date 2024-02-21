@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
         body: BlocConsumer<LoginBlocCubit, LoginBlocState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
-              NavigationService.navigateReplaced(RoutePaths.tradeScreen);
+              NavigationService.navigateReplaced(RoutePaths.todolist);
             } else if (state is LoginError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
