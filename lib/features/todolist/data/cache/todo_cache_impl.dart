@@ -33,4 +33,28 @@ class ToDoCacheImpl extends BaseCacheRepository implements ToDoRepository {
 
     return todos;
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteToDoItem(String id) {
+    // TODO: implement deleteToDoItem
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, ToDoItem>> getToDoItem(String id) {
+    // TODO: implement getToDoItem
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, ToDoItem>> updateToDoItem(String id, ToDoItem updatedItem) {
+    // TODO: implement updateToDoItem
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, ToDoItem>> addToDoItem(ToDoItem newItem) {
+    // TODO: implement addToDoItem
+    throw UnimplementedError();
+  }
 }

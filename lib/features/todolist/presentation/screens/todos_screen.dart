@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/entity/todo_item.dart';
+import 'package:todo/features/todolist/domain/entity/todo_item.dart';
+import 'package:todo/features/todolist/presentation/screens/read_item_screen.dart';
+import 'package:todo/features/todolist/presentation/screens/update_item_screen.dart';
 import '../bloc/todos_bloc.dart';
 
 class ToDosScreen extends StatelessWidget {
-  const ToDosScreen({super.key});
+  const ToDosScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +71,7 @@ class ToDosScreen extends StatelessWidget {
               leading: Icon(Icons.check_circle_outline, color: item.complete! ? Colors.green : Colors.red),
               title: Text(item.title!, style: TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text('Tap for details', style: TextStyle(color: Colors.deepPurpleAccent)),
-              onTap: () => _showDetailDialog(context, item),
+              onTap: () => _navigateToItemDetail(context, item), // Navigate to item detail
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -81,32 +82,21 @@ class ToDosScreen extends StatelessWidget {
     );
   }
 
-  void _showDetailDialog(BuildContext context, ToDoItem item) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          title: Text(item.title ?? "", style: TextStyle(fontWeight: FontWeight.bold)),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text("Details: ${item.description}"),
-                Text("Created: ${item.created}"),
-                Text("Completed: ${item.complete! ? 'Yes' : 'No'}"),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Close', style: TextStyle(color: Colors.deepPurple)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+  void _navigateToItemDetail(BuildContext context, ToDoItem item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReadItemScreen(item: item), // Pass the ToDoItem to the ReadItemScreen
+      ),
     );
+  }
+
+  void _navigateToUpdateItem(BuildContext context, ToDoItem item) {
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => UpdateItemScreen(item: item), // Pass the ToDoItem to the UpdateItemScreen
+    //   ),
+    // );
   }
 }

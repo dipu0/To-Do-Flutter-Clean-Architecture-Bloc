@@ -26,6 +26,18 @@ class ToDoItem {
     data['created'] = this.created;
     return data;
   }
+
+  ToDoItem copyWith({
+    String? title,
+    String? description,
+    bool? complete,
+  }) {
+    return ToDoItem(
+      title: title ?? this.title,
+      description: description ?? this.description,
+      complete: complete ?? this.complete,
+    );
+  }
 }
 
 class ToDoItemList {
@@ -57,4 +69,3 @@ class ToDoItemList {
     return ToDoItemList.fromDynamicList(jsonDecode(json));
   }
 }
-

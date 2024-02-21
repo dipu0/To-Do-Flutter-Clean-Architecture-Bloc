@@ -14,7 +14,16 @@ class ToDosUseCase {
     return await _todoRepository.getToDoList();
   }
 
-  Future<Either<Failure, bool>> doFilterTradeList() {
-    throw UnimplementedError();
+  Future<Either<Failure, ToDoItem>> addToDoItem(ToDoItem newItem) async{
+   return await _todoRepository.addToDoItem(newItem);
+  }
+  Future<Either<Failure, ToDoItem>> getToDoItem(String id) async{
+    return await _todoRepository.getToDoItem(id);
+  }
+  Future<Either<Failure, ToDoItem>> updateToDoItem(String id, ToDoItem updatedItem) async{
+    return await _todoRepository.updateToDoItem(id, updatedItem);
+  }
+  Future<Either<Failure, bool>> deleteToDoItem(String id) async {
+    return await _todoRepository.deleteToDoItem(id);
   }
 }

@@ -12,10 +12,12 @@ class ToDosBloc extends Bloc<ToDosEvent, ToDosState> {
 
   ToDosBloc(this._todosUseCase) : super(ToDosInitial()) {
     on<FetchToDos>(_fetchToDos);
+    on<FetchToDoItem>(_fetchToDoItem);
+    on<UpdateToDoItem>(_updateToDoItem);
+    on<DeleteToDoItem>(_deleteToDoItem);
   }
 
-  _fetchToDos(ToDosEvent event, Emitter<ToDosState> emit,
-  ) async {
+  _fetchToDos(ToDosEvent event, Emitter<ToDosState> emit,) async {
     emit(ToDosLoading());
 
     try {
@@ -36,5 +38,36 @@ class ToDosBloc extends Bloc<ToDosEvent, ToDosState> {
       emit(ToDosError(error.toString()));
     }
   }
-}
 
+  Future<void> _fetchToDoItem(FetchToDoItem event,
+      Emitter<ToDosState> emit) async {
+    emit(ToDosLoading());
+    final result = await _todosUseCase.getToDoItem(event.id);
+    result.fold(
+          (failure) => emit(ToDosError(failure.message)),
+          (item) =>
+          emit(ToDosLoaded(
+              [item])), // Assuming ToDosLoaded can accept a single item list
+    );
+  }
+
+  Future<void> _updateToDoItem(UpdateToDoItem event,
+      Emitter<ToDosState> emit) async {
+    emit(ToDosLoading());
+    final result = await _todosUseCase.updateToDoItem(event.id, event.item);
+    result.fold(
+          (failure) => emit(ToDosError(failure.message)),
+          (_) => add(FetchToDos()),
+    );
+  }
+
+  Future<void> _deleteToDoItem(DeleteToDoItem event,
+      Emitter<ToDosState> emit) async {
+    emit(ToDosLoading());
+    final result = await _todosUseCase.deleteToDoItem(event.id);
+    result.fold(
+          (failure) => emit(ToDosError(failure.message)),
+          (_) => add(FetchToDos()),
+    );
+  }
+}
