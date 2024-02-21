@@ -11,6 +11,8 @@ Widget buildItem(ToDoItem item) {
           const SizedBox(height: 2),
           Text("Details: ${item.description}"),
           const SizedBox(height: 2),
+          Text("Details: ${item.created}"),
+          const SizedBox(height: 2),
           Text("Is Complete: ${item.complete}")
         ],
       ),

@@ -56,8 +56,8 @@ class ServiceLocator {
 
   void _registerRepoWithOutCache() {
     registerFactory<ApiUrl>(() => ApiUrl());
-    registerFactory<WelcomeRepository>(
-        () => WelcomeRepositoryImpl(get<ApiClient>()));
+    registerFactory<WelcomeRepository>(() => WelcomeRepositoryImpl(get<ApiClient>()));
+    registerSingleton<ToDoRepository>(ToDoHttpImp(get<ApiClient>(), get<ApiUrl>()));
 
     _registerUseCase();
   }
@@ -65,7 +65,7 @@ class ServiceLocator {
   void _registerRepoWithCache(ApiClient client, BaseCache cache) {
     _registerAuthRepositories(client, cache);
    // _registerTradeRepositories(client, cache);
-    _registerToDosRepositories(client, cache);
+    //_registerToDosRepositories(client, cache);
   }
 
   void _registerUseCase() {
