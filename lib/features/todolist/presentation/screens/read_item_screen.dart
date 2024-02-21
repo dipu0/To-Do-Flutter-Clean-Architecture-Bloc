@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entity/todo_item.dart';
 import '../bloc/todos_bloc.dart';
+import 'add_update_todo_screen.dart';
 
 class ReadItemScreen extends StatelessWidget {
   final ToDoItem item;
@@ -28,18 +29,25 @@ class ReadItemScreen extends StatelessWidget {
             Text('Description: ${item.description}'),
             SizedBox(height: 10),
             Text('Created: ${item.created}'),
-            SizedBox(height: 10),
-            Text('Completed: ${item.complete! ? 'Yes' : 'No'}'),
             SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
                   onPressed: () => _navigateToUpdate(context, item),
                   child: Text('Update'),
                 ),
-                SizedBox(width: 10),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(item.complete! ? Colors.red : Colors.green),
+                  ),
+                  onPressed: () => _toggleCompleteStatus(context, item),
+                  child: Text(item.complete! ? 'Mark as Incomplete' : 'Mark as Complete'),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.grey),
+                  ),
                   onPressed: () => _confirmDelete(context, item),
                   child: Text('Delete'),
                 ),
@@ -52,12 +60,21 @@ class ReadItemScreen extends StatelessWidget {
   }
 
   void _navigateToUpdate(BuildContext context, ToDoItem item) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => UpdateItemScreen(item: item),
-    //   ),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddUpdateToDoScreen(item: item),
+      ),
+    );
+  }
+
+  void _toggleCompleteStatus(BuildContext context, ToDoItem item) {
+    // Create a copy of the item with the toggled completion status
+    final updatedItem = item.copyWith(complete: !item.complete!);
+    // Dispatch update event to Bloc
+    context.read<ToDosBloc>().add(UpdateToDoItem(item.id.toString(), updatedItem));
+
+    Navigator.of(context).pop(); // Optionally close the details screen after updating
   }
 
   void _confirmDelete(BuildContext context, ToDoItem item) {
@@ -70,9 +87,7 @@ class ReadItemScreen extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("Cancel"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => Navigator.of(context).pop(),
             ),
             TextButton(
               child: Text("Delete"),
@@ -88,7 +103,6 @@ class ReadItemScreen extends StatelessWidget {
   }
 
   void _deleteItem(BuildContext context, ToDoItem item) {
-    // Dispatch delete event to Bloc
     context.read<ToDosBloc>().add(DeleteToDoItem(item.id.toString()));
     Navigator.of(context).pop(); // Close the detail screen after deletion
   }
