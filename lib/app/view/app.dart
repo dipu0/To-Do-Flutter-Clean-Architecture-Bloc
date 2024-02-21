@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/features/todolist/presentation/bloc/todos_bloc.dart';
 import 'package:todo/features/trades/domain/usecase/trades_use_case.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -8,6 +9,7 @@ import '../../features/authentication/domain/usecase/auth_use_case.dart';
 import '../../features/authentication/presentation/login/bloc/login_bloc_cubit.dart';
 import '../../features/authentication/presentation/registration/bloc/registration_bloc.dart';
 import '../../features/feature_screen_export.dart';
+import '../../features/todolist/domain/usecase/todos_use_case.dart';
 import '../../features/trades/domain/repo/trade_repository.dart';
 import '../../features/trades/presentation/bloc/trades_bloc.dart';
 import '../../features/welcome/domain/usecase/welecome_usecase.dart';
@@ -27,6 +29,8 @@ class AppRepositoryProvider extends StatelessWidget {
             create: (context) => serviceLocator.get<WelcomeUseCase>()),
         RepositoryProvider(
             create: (context) => serviceLocator.get<TradeUseCase>()),
+        RepositoryProvider(
+            create: (context) => serviceLocator.get<ToDosUseCase>()),
       ],
       child: const AppBlocProvider(),
     );
@@ -62,6 +66,11 @@ class _AppBlocProviderState extends State<AppBlocProvider> {
         BlocProvider(
           create: (_) => TradesBloc(
             RepositoryProvider.of<TradeUseCase>(context),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => ToDosBloc(
+            RepositoryProvider.of<ToDosUseCase>(context),
           ),
         ),
         BlocProvider(

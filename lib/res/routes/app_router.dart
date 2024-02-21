@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:todo/features/feature_screen_export.dart';
+import 'package:todo/features/todolist/presentation/screens/todos_screen.dart';
 
 import '../res_export.dart';
 
@@ -9,7 +10,8 @@ class AppRouter {
   static final widgetMap = <String, Widget Function(RouteSettings)>{
     RoutePaths.splash: (_) => const SplashScreen(),
     RoutePaths.loginScreen: (settings) => const LoginScreen(),
-    RoutePaths.tradeScreen: (settings) => const TradesScreen(),
+   // RoutePaths.tradeScreen: (settings) => const TradesScreen(),
+    RoutePaths.todolist: (settings) => const ToDosScreen(),
   };
 
   static Route generateRoute(RouteSettings settings) {

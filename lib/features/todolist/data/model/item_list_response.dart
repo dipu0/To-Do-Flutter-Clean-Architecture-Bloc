@@ -53,47 +53,61 @@ class ItemListResponse {
 }
 
 class ItemData {
-  ItemData({
-    String? name,
-    String? estimateBuyingPrice,
-    String? estimateSellingingPrice,
-  }) {
-    _name = name;
-    _estimateBuyingPrice = estimateBuyingPrice;
-    _estimateSellingingPrice = estimateSellingingPrice;
+  int? _id;
+  String? _title;
+  String? _description;
+  bool? _complete;
+  String? _created;
+
+  ItemData(
+      {int? id,
+        String? title,
+        String? description,
+        bool? complete,
+        String? created}) {
+    if (id != null) {
+      this._id = id;
+    }
+    if (title != null) {
+      this._title = title;
+    }
+    if (description != null) {
+      this._description = description;
+    }
+    if (complete != null) {
+      this._complete = complete;
+    }
+    if (created != null) {
+      this._created = created;
+    }
   }
 
-  ItemData.fromJson(dynamic json) {
-    _name = json['Name'];
-    _estimateBuyingPrice = json['EstimateBuyingPrice'].toString();
-    _estimateSellingingPrice = json['EstimateSellingingPrice'].toString();
+  int? get id => _id;
+  set id(int? id) => _id = id;
+  String? get title => _title;
+  set title(String? title) => _title = title;
+  String? get description => _description;
+  set description(String? description) => _description = description;
+  bool? get complete => _complete;
+  set complete(bool? complete) => _complete = complete;
+  String? get created => _created;
+  set created(String? created) => _created = created;
+
+  ItemData.fromJson(Map<String, dynamic> json) {
+    _id = json['id'];
+    _title = json['title'];
+    _description = json['description'];
+    _complete = json['complete'];
+    _created = json['created'];
   }
-
-  String? _name;
-  String? _estimateBuyingPrice;
-  String? _estimateSellingingPrice;
-
-  ItemData copyWith(
-          {String? name,
-          String? estimateBuyingPrice,
-          String? estimateSellingingPrice}) =>
-      ItemData(
-          name: name ?? _name,
-          estimateBuyingPrice: estimateBuyingPrice ?? _estimateBuyingPrice,
-          estimateSellingingPrice:
-              estimateSellingingPrice ?? _estimateSellingingPrice);
-
-  String? get name => _name;
-
-  String? get estimateBuyingPrice => _estimateBuyingPrice;
-
-  String? get estimateSellingingPrice => _estimateSellingingPrice;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['Name'] = _name;
-    map['EstimateBuyingPrice'] = _estimateBuyingPrice;
-    map['EstimateSellingingPrice'] = _estimateSellingingPrice;
-    return map;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this._id;
+    data['title'] = this._title;
+    data['description'] = this._description;
+    data['complete'] = this._complete;
+    data['created'] = this._created;
+    return data;
   }
 }

@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashToDashboard) {
-          NavigationService.navigateReplaced(RoutePaths.tradeScreen);
+          NavigationService.navigateReplaced(RoutePaths.todolist);
         } else if (state is SplashToLogin) {
           NavigationService.navigateReplaced(RoutePaths.loginScreen);
         }

@@ -1,46 +1,52 @@
 import 'dart:convert';
 
 class ToDoItem {
-  String? name;
-  String? estimateBuyingPrice;
-  String? estimateSellingPrice;
+  int? id;
+  String? title;
+  String? description;
+  bool? complete;
+  String? created;
 
-  ToDoItem(this.name, this.estimateBuyingPrice, this.estimateSellingPrice);
+  ToDoItem({this.id, this.title, this.description, this.complete, this.created});
 
   ToDoItem.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    estimateBuyingPrice = json['estimateBuyingPrice'].toString();
-    estimateSellingPrice = json['estimateSellingPrice'].toString();
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    complete = json['complete'];
+    created = json['created'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['estimateBuyingPrice'] = estimateBuyingPrice.toString();
-    data['estimateSellingPrice'] = estimateSellingPrice.toString();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['complete'] = this.complete;
+    data['created'] = this.created;
     return data;
   }
 }
 
 class ToDoItemList {
-  List<ToDoItem>? tradeItems;
+  List<ToDoItem>? todoItems;
 
-  ToDoItemList({this.tradeItems});
+  ToDoItemList({this.todoItems});
 
   factory ToDoItemList.fromDynamicList(List<dynamic> list) {
-    var orders = <ToDoItem>[];
+    var toDolist = <ToDoItem>[];
     for (var item in list) {
-      orders.add(ToDoItem.fromJson(item));
+      toDolist.add(ToDoItem.fromJson(item));
     }
-    return ToDoItemList(tradeItems: orders);
+    return ToDoItemList(todoItems: toDolist);
   }
 
   List<dynamic> toDynamicList() {
-    var orders = [];
-    for (var item in tradeItems!) {
-      orders.add(item.toJson());
+    var toDolist = [];
+    for (var item in todoItems!) {
+      toDolist.add(item.toJson());
     }
-    return orders;
+    return toDolist;
   }
 
   String toJson() {
@@ -51,3 +57,4 @@ class ToDoItemList {
     return ToDoItemList.fromDynamicList(jsonDecode(json));
   }
 }
+

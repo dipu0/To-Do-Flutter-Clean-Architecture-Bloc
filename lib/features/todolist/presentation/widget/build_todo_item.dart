@@ -7,11 +7,11 @@ Widget buildItem(ToDoItem item) {
     child: ListTile(
       title: Column(
         children: [
-          Text("Name:${item.name}"),
+          Text("Name:${item.title}"),
           const SizedBox(height: 2),
-          Text("Selling Price: ${item.estimateSellingPrice}"),
+          Text("Details: ${item.description}"),
           const SizedBox(height: 2),
-          Text("Buying Price: ${item.estimateBuyingPrice}")
+          Text("Is Complete: ${item.complete}")
         ],
       ),
     ),

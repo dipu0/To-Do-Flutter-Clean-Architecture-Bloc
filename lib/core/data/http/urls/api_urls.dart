@@ -2,9 +2,9 @@ import '../../../../app/app.dart';
 
 part 'authentication_api_urls.dart';
 part 'dashboard_api_urls.dart';
-part 'trade_api_urls.dart';
+part 'todo_api_urls.dart';
 
-class ApiUrl implements AuthenticationApiUrls, DashboardApiUrls{
+class ApiUrl implements AuthenticationApiUrls, DashboardApiUrls, ToDoApiUrls{
   var baseUrl = "${appConfig.getApiClientConfig().baseUrl}api/";
   var apiVersion = appConfig.getApiClientConfig().apiVersion;
 
@@ -21,8 +21,11 @@ class ApiUrl implements AuthenticationApiUrls, DashboardApiUrls{
   String get registrationUrl => throw UnimplementedError();
 
   // @override
-  // String get getAllTrade => "${baseUrl}Item/getall";
+  // String get getAllTrade => "${baseUrl}api/tasks";
 
   @override
   String get getDashboardData => throw UnimplementedError();
+
+  @override
+  String get getAllToDo => "${baseUrl}tasks/";
 }

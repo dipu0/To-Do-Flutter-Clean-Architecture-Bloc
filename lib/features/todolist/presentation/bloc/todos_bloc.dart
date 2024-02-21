@@ -22,8 +22,13 @@ class ToDosBloc extends Bloc<ToDosEvent, ToDosState> {
       final ToDos = await _todosUseCase.getToDoList();
 
       ToDos.fold(
-            (failure) => emit(ToDosError(failure.message)),
-            (trade) => emit(ToDosLoaded(trade.tradeItems!)),
+            (failure) {
+          emit(ToDosError(failure.message));
+        },
+            (todos) {
+          print("ToDosLoaded: ${todos.todoItems}");
+          emit(ToDosLoaded(todos.todoItems!));
+        },
       );
 
       //emit(ToDosLoaded(ToDos.rig));

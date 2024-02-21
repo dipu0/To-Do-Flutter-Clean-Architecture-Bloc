@@ -23,15 +23,13 @@ class ToDoHttpImp extends BaseHttpRepository implements ToDoRepository {
         List<ToDoItem> list = [];
         for (var item in itemList.data!) {
           list.add(ToDoItem(
-            item.name,
-            item.estimateBuyingPrice,
-            item.estimateSellingingPrice,
+              title: item.title, description: item.description, complete: item.complete, created: item.created
           ));
 
-          Logger().i(item.name);
+          Logger().i(item.title);
         }
 
-        return Right(ToDoItemList(tradeItems: list));
+        return Right(ToDoItemList(todoItems: list));
       } else {
         return const Left(ConnectionFailure("response.data['message']"));
       }

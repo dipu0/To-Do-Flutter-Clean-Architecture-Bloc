@@ -8,4 +8,5 @@ class RoutePaths {
   static const String profile = '/profileScreen';
   static const String homepage = '/homePage';
   static const String commonError = '/commonError';
+  static const String todolist ='/todolist';
 }
