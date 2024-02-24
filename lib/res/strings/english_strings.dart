@@ -3,7 +3,7 @@ import 'strings.dart';
 class EnglishStrings implements CommonStrings {
 
   @override
-  String get appName => "Flutter Demo";
+  String get appName => "TODO";
 
   @override
   String get verify => "Verify";

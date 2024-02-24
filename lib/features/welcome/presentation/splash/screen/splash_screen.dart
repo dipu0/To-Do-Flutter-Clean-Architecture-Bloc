@@ -26,12 +26,14 @@ class SplashScreen extends StatelessWidget {
         return Scaffold(
           body: Stack(
             children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                width: double.infinity,
-                height: double.infinity,
-                color: context.resources.color.white,
-                child: SvgPicture.asset(context.resources.drawable.splashImage),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  height: 120,
+                  width: 120,
+                  color: context.resources.color.white,
+                  child: Image.asset(context.resources.drawable.icon, height: 36, width: 36,),
+                ),
               ),
               const Positioned(
                 bottom: 60,

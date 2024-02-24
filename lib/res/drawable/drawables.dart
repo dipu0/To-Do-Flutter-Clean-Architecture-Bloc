@@ -3,6 +3,7 @@ abstract class BasicDrawables
 
   String get logoSmall;
   String get splashImage;
+  String get icon;
   String get welcomeBackground;
   String get welcomeBackgroundSVG;
 

@@ -47,4 +47,7 @@ class AppDrawable implements BasicDrawables {
 
   @override
   String get loginUpperImage => throw UnimplementedError();
+
+  @override
+  String get icon =>  "${basePng}icon.png";
 }

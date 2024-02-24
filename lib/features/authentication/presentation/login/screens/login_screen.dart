@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
               height: 120,
               width: 120,
-              child: SvgPicture.asset(context.resources.drawable.splashImage)),
+              child: Image.asset(context.resources.drawable.icon)),
           const SizedBox(height: 16),
           Text(
             '${context.resources.strings?.loginUpperText}',
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${context.resources.strings?.loginDescription}',
+            '${context.resources.strings?.appName}',
             style: const TextStyle(
               color: Color(0xFF171930),
               fontSize: 16,
