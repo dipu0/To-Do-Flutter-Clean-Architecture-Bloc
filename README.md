@@ -16,19 +16,16 @@ This repository contains a mobile application developed using Flutter. It's desi
 
 ### Splash Screen, Login, Task List
 
-| Splash Screen | Login | Task List |
-|---------------|-------|-----------|
-| ![Splash Screen](FlutterScreenShots\splashScreen.png) | ![Login](FlutterScreenShots\login.png) | ![Task List](FlutterScreenShots\tasklist.png) |
+| Splash Screen                                         | Login                                  | Task List                                     |
+|-------------------------------------------------------|----------------------------------------|-----------------------------------------------|
+| ![Splash Screen](FlutterScreenShots/splashScreen.png) | ![Login](FlutterScreenShots/login.png) | ![Task List](FlutterScreenShots/tasklist.png) |
 
 ### Task Details, Add Task, Update Task
 
-| Task Details | Add Task | Update Task |
-|--------------|----------|-------------|
-| ![Task Details](FlutterScreenShots\taskDetails.png) | ![Add Task](FlutterScreenShots\add.png) | ![Update Task](FlutterScreenShots\updatetask.png) |
+| Task Details                                        | Add Task | Update Task                                       |
+|-----------------------------------------------------|----------|---------------------------------------------------|
+| ![Task Details](FlutterScreenShots/taskDetails.png) | ![Add Task](FlutterScreenShots/add.png) | ![Update Task](FlutterScreenShots/updatetask.png) |
 
-### Delete Task Confirmation
-
-![Delete Task Confirmation](path/to/delete_task_confirmation.png)
 
 ## Getting Started
 
